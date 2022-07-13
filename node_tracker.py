@@ -4,6 +4,7 @@
     @Links: https://github.com/Rood95/Pokemon_map_tracker
 """
 from node import Node
+import glob
 """
     Tracks the connections between nodes
 """
@@ -14,11 +15,24 @@ class Node_Tracker:
         self.connected_nodes = list()
     
     """
-        WIP:
         Load all nodes from the file names of pictures
     """
-    def load_all_nodes(self,file_path):
-        self.available_nodes.append(Node(file_path))
+    def load_all_nodes(self):
+        files = []
+        for file in glob.glob("pictures/*.png"):
+            files.append(file)
+        place_png = []
+        for i in files:
+            t = i.split( "\\")
+            place_png.append(t[1])
+        place = []
+        for k in place_png:
+            p = k.split(".")
+            place.append(p[0])
+
+        for node in place:
+            self.available_nodes.append(Node(node))
+        
     
     """
         Adds connections between two nodes
@@ -59,3 +73,5 @@ class Node_Tracker:
         index_node2 = self.available_nodes.index(end_node_name)
         start_node = self.available_nodes[index_node1]
         end_node = self.available_nodes[index_node2]
+
+        
