@@ -1,5 +1,9 @@
+"""
+    @Author: Rodeta | Rodion Kraft
+    @Credit: 
+    @Links: https://github.com/Rood95/Pokemon_map_tracker
+"""
 from node import Node
-
 """
     Tracks the connections between nodes
 """

@@ -1,3 +1,9 @@
+"""
+    @Author: Rodeta | Rodion Kraft
+    @Credit: 
+    @Links: https://github.com/Rood95/Pokemon_map_tracker
+"""
+
 class Node:
     def __init__(self,file_name):
         self.file_name = file_name
