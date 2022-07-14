@@ -8,3 +8,12 @@ This will be an implementation of a Pokemon map tracker for a pokemon Map random
 - there should be two input fields to input the start point and the end point. Then an alogirthm should find the fastest way from one point to an other. 
 - the found way should be showed as a picture line on the screen
 - the algorithm which finds the way will be dikstra
+
+## Pictures name rules
+The names of the pictures which reperesent a specific place should have a certain name scheme.
+place_direction
+
+An example will look like this:
+- Cherrygrove_PC
+- Goldenrod-mall-e4_down
+- MtMortar-floor2_right-top

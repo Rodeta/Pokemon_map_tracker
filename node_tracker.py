@@ -1,8 +1,9 @@
 """
     @Author: Rodeta | Rodion Kraft
     @Credit: 
-    @Links: https://github.com/Rood95/Pokemon_map_tracker
+    @Links: https://github.com/Rodeta/Pokemon_map_tracker
 """
+from edge import Edge
 from node import Node
 import glob
 """
@@ -13,6 +14,7 @@ class Node_Tracker:
         self.available_nodes = list()
         self.unconnected_nodes = list()
         self.connected_nodes = list()
+        self.edges = list()
     
     """
         Load all nodes from the file names of pictures
@@ -35,6 +37,7 @@ class Node_Tracker:
         
     
     """
+        WIP:
         Adds connections between two nodes
     """
     def add_connection(self, node_name1, node_name2):
@@ -43,15 +46,15 @@ class Node_Tracker:
             index_node2 = self.available_nodes.index(node_name2)
             node1 = self.available_nodes[index_node1]
             node2 = self.available_nodes[index_node2]
-            if(node1.check_connection(node2) == False and node2.check_connection(node1) == False):
-                self.available_nodes[index_node1].add_connection(node2)
-                self.available_nodes[index_node2].add_connection(node1)
-                if(self.available_nodes[index_node1] in self.unconnected_nodes and self.available_nodes[index_node1] not in self.connected_nodes):
-                    self.unconnected_nodes.remove(self.available_nodes[index_node1])
-                    self.connected_nodes.append(self.available_nodes[index_node1])
-                if(self.available_nodes[index_node2] in self.unconnected_nodes and self.available_nodes[index_node2] not in self.connected_nodes):
-                    self.unconnected_nodes.remove(self.available_nodes[index_node2])
-                    self.connected_nodes.append(self.available_nodes[index_node2])
+            for e in self.edges:
+                if e.connection1.file_name == node1.file_name and e.connection2.file_name == node2.file_name or e.connection1.file_name == node2.file_name and e.connection2.file_name == node1.file_name:
+                    raise Exception("Connection already exists.")
+     
+            new_edge = Edge(self.available_nodes[index_node1],self.available_nodes[index_node2])
+            self.edges.append(new_edge)
+            self.available_nodes[index_node1].add_connection(node2)
+            self.available_nodes[index_node2].add_connection(node1)
+
 
         except Exception:
             print("That item does not exist")
