@@ -7,17 +7,18 @@
 """
     Describes a connection between two nodes
 """
+from node import Node
+
+
 class Edge:
-    def __init__(self, node1, node2):
+    def __init__(self, node1: Node, node2:Node, weight: float):
         self.connection1 = node1
         self.connection2 = node2
-        if node1.section == node2.section:
-            self.weight = 0
-        else:
-            self.weight = 1
+        self.weight = weight
+        self.summary = {"Node1": node1.file_name, "Node2": node2.file_name,"Edge weight": self.weight}
     
     """
-        Shows the nodes from the edge
+        Shows the nodes and the weight from the edge
     """
     def show_connections(self):
-        return [self.connection1,self.connection2]
+        return self.summary
