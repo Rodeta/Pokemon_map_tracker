@@ -5,7 +5,7 @@
 """
 """
     WIP:
-    Dijkstra algorithm
+    Dijkstra algorithm.
 """
 from collections import deque
 import sys

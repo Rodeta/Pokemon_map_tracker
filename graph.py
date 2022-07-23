@@ -17,7 +17,7 @@ class Graph:
         self.create_section_edges()
 
     """
-        Load all nodes from the file names of pictures
+        Load all nodes from the file names of pictures.
     """
     def load_all_nodes(self):
         nodes = list()
@@ -38,16 +38,16 @@ class Graph:
         return nodes
 
     """
-        Checks if an egde with these node already exists
+        Checks if an egde with these node already exists.
     """
     def check_if_edge_exists(self, node1: Node, node2: Node, weight):
         for e in self.edges:
-            if (e.connection1.file_name == node1.file_name and  e.connection2.file_name == node2.file_name and e.weight == weight) or (e.connection2.file_name == node1.file_name and  e.connection1.file_name == node2.file_name and e.weight == weight):
+            if (e.connection1.file_name == node1.file_name and e.connection2.file_name == node2.file_name and e.weight == weight) or (e.connection2.file_name == node1.file_name and  e.connection1.file_name == node2.file_name and e.weight == weight):
                 return True
         return False
 
     """
-        Creates an edge for two nodes
+        Creates an edge for two nodes.
     """
     def connect_nodes_with_same_section(self, node_name1: string, node_name2: string):
         index1 = None
@@ -67,7 +67,7 @@ class Graph:
             self.edges.append(Edge(self.nodes[index1],self.nodes[index2],0))
 
     """
-        Creates an edge for two nodes
+        Creates an edge for two nodes.
     """
     def connect_nodes(self, node_name1: string, node_name2: string):
         index1 = None
@@ -86,6 +86,9 @@ class Graph:
         else:
             self.edges.append(Edge(self.nodes[index1],self.nodes[index2],1))
 
+    """
+        Creates edges from nodes which belongs to the same section.
+    """
     def create_section_edges(self):
         for n in self.nodes:
             for nn in self.nodes:
@@ -94,16 +97,16 @@ class Graph:
                         self.connect_nodes_with_same_section(n.file_name,nn.file_name)
 
     """
-        Choose node and mark as dead end
+        Choose node and mark as dead end.
     """
-    def mark_as_dead_end(self,node: Node):
+    def mark_as_dead_end(self,node_name: string):
         for n in self.nodes:
-            if node.file_name == n.file_name:
+            if node_name == n.file_name:
                 index = self.nodes.index(n)
                 self.nodes[index].dead_end = True
 
     """
-        Console based describtion of the graph
+        Console based describtion of the graph.
     """
     def show_graph(self):
         nodes = []
@@ -113,6 +116,9 @@ class Graph:
         for e in self.edges:
             print(e.show_connections())
 
+    """
+        Shows the amount of all nodes.
+    """
     def graph_size(self):
-        return len(self.nodes)-1
+        return len(self.nodes)
         
